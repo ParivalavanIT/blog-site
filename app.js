@@ -3,7 +3,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const kebabCase = require("lodash/kebabCase");
 const mongoose = require("mongoose");
 
 const homeStartingContent =
@@ -40,7 +39,6 @@ app.get("/", function (req, res) {
     })
     .catch((err) => {
       console.error(err);
-      // Handle the error appropriately, e.g., render an error page
       res.render("error");
     });
 });
@@ -72,13 +70,11 @@ app.get("/posts/:postTitle", function (req, res) {
           postBody: foundPost.body,
         });
       } else {
-        // Handle when post is not found
         res.render("postNotFound");
       }
     })
     .catch((err) => {
       console.error(err);
-      // Handle the error appropriately
       res.render("error");
     });
 });
